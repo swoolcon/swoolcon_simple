@@ -18,10 +18,8 @@ error_reporting(E_ALL);
 
 defined('BASE_PATH') || define('BASE_PATH', __DIR__);
 
-
-//config
-
 require BASE_PATH . '/Bootstrap/Autoloader.php';
+
 
 
 class Server

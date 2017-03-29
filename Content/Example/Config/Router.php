@@ -7,32 +7,35 @@
  * Time: 下午4:18
  */
 
-/** @var \Phalcon\Mvc\Router $router */
-$router = new \Phalcon\Mvc\Router();
-$router->removeExtraSlashes(true);
 
-$frontend = new \Phalcon\Mvc\Router\Group([
-    'module'     => 'frontend',
-    'namespace'  => 'App\\Modules\\Frontend\\Controllers',
-    'controller' => 'index',
-    'action'     => 'index',
-]);
-$frontend->setPrefix('');
+if(!function_exists('get_router')){
+    function get_router(\Phalcon\Mvc\Router $router){
 
-$frontend->add('[/]?', [
-    'action' => 'index',
-]);
-$frontend->add('/:controller[/]?', [
-    'controller' => 1,
-]);
-$frontend->add('/:controller/:action[/]?', [
-    'controller' => 1,
-    'action'     => 2,
-]);
+        $router->removeExtraSlashes(true);
 
-$router->mount($frontend);
+        $frontend = new \Phalcon\Mvc\Router\Group([
+            'module'     => 'frontend',
+            'namespace'  => 'App\\Modules\\Frontend\\Controllers',
+            'controller' => 'index',
+            'action'     => 'index',
+        ]);
+        $frontend->setPrefix('');
+
+        $frontend->add('[/]?', [
+            'action' => 'index',
+        ]);
+        $frontend->add('/:controller[/]?', [
+            'controller' => 1,
+        ]);
+        $frontend->add('/:controller/:action[/]?', [
+            'controller' => 1,
+            'action'     => 2,
+        ]);
+
+        $router->mount($frontend);
 
 
-return $router;
+        return $router;
 
-
+    }
+}

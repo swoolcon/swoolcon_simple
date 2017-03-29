@@ -19,4 +19,6 @@ require 'Helper.php';
 ])->register();
 
 
+require 'DefaultConfig.php';
+
 //require BASE_PATH . '/vendor/autoload.php';
