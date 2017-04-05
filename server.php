@@ -63,7 +63,7 @@ class Server
         }
         $di = new Phalcon\Di();
 
-
+        Phalcon\Di::setDefault($di);
         ob_start();
         try {
             //service
@@ -82,6 +82,15 @@ class Server
         }
         $response->end(ob_get_contents());
         ob_flush();
+
+        //想一下，用不用超全局全量，目前先unset 了再说，免得被跨请求使用
+        unset($di);
+        unset($_SESSION);
+        unset($_GET);
+        unset($_POST);
+        unset($_REQUEST);
+        unset($_FILES);
+        unset($_ENV);
 
     }
 
